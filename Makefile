@@ -6,11 +6,11 @@
 #    By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/05 20:50:53 by igvisera          #+#    #+#              #
-#    Updated: 2024/04/05 20:55:56 by igvisera         ###   ########.fr        #
+#    Updated: 2024/04/06 14:40:18 by igvisera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	fdf
+NAME	=	pipex
 CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -O3
 
 
