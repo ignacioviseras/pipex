@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printText.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/17 14:46:26 by igvisera          #+#    #+#             */
-/*   Updated: 2024/02/17 14:48:35 by igvisera         ###   ########.fr       */
+/*   Created: 2022/09/11 17:12:02 by igvisera          #+#    #+#             */
+/*   Updated: 2024/02/08 20:58:41 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../utils.h"
 
-int	ft_print_char(int s)
+size_t	ft_strlen(const char *s)
 {
-	return (write(1, &s, 1));
-}
+	size_t	index;
 
-int	ft_print_string(char *s)
-{
-	if (!s)
-		return (write(1, "(null)", ft_strlen("(null)")));
-	return (write(1, s, ft_strlen(s)));
-}
-
-int	ft_print_percent(void)
-{
-	return (write(1, "%%", 1));
+	index = 0;
+	while (s[index])
+		index++;
+	return (index);
 }

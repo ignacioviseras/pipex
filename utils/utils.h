@@ -13,12 +13,25 @@
 #ifndef UTILS_H
 # define UTILS_H
 
+# include "stdarg.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# ifndef HEXLOWER
+#  define HEXLOWER "0123456789abcdef"
+# endif
+
+# ifndef HEXUPPER
+#  define HEXUPPER "0123456789ABCDEF"
+# endif
+
+
+//pertenece a basics
+size_t	ft_strlen(const char *s);
 
 //pertenece a printf
 int		ft_printf(char const *format, ...);

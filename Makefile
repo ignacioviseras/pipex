@@ -11,8 +11,13 @@
 # **************************************************************************** #
 
 NAME	=	pipex
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -O3
+# CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -O3
+CFLAGS	=	-Wall -Wextra -g3 -fsanitize=address -O3
 
+UTILS_A		=	utils.a
+UTILS_SRC 	=	./utils/
+UTILS_OBJS	=	$(addprefix $(UTILS_SRC), *.o)
+UTILS     	=	$(addprefix $(UTILS_SRC), $(UTILS_A))
 
 SRCS	=	pipex.c \
 			pipex_utils.c \
@@ -21,14 +26,19 @@ OBJS	=	${SRCS:.c=.o}
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	gcc $(CFLAGS) $(OBJS) -I ./fdf.h -o $(NAME)
+$(NAME): $(UTILS) $(OBJS)
+	gcc $(CFLAGS) $(OBJS) -I ./pipex.h $(UTILS) -o $(NAME)
+
+$(UTILS):
+	$(MAKE) -C $(UTILS_SRC)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(UTILS_OBJS)
+	$(MAKE) -C $(UTILS_SRC) clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(UTILS_SRC) fclean
 
 re: fclean all
 
