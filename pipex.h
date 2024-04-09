@@ -13,6 +13,18 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
+#ifndef READ_END
+# define READ_END 0 /* PIPE EXTREMO DE LECTURA */
+#endif
+
+#ifndef WRITE_END
+# define WRITE_END 1 /* PIPE EXTREMO DE ESCRITURA */
+#endif
+
+#ifndef FILE_NAME
+# define FILE_NAME = "result.txt" /* NOMBRE DEL ARCHIVO DND SE GUARDA LA INFO */
+#endif
+
 #include <unistd.h>
 #include <stdlib.h>
 #include "./utils/utils.h"
