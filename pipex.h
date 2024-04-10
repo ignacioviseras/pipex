@@ -22,7 +22,7 @@
 #endif
 
 #ifndef FILE_NAME
-# define FILE_NAME = "result.txt" /* NOMBRE DEL ARCHIVO DND SE GUARDA LA INFO */
+# define FILE_NAME "result.txt" /* NOMBRE DEL ARCHIVO DND SE GUARDA LA INFO */
 #endif
 
 #include <unistd.h>
