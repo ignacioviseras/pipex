@@ -2,12 +2,9 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:50:47 by igvisera          #+#    #+#             */
 /*   Updated: 2024/04/06 16:09:33 by igvisera         ###   ########.fr       */
 /*                                                                            */
@@ -120,7 +117,7 @@ int main()
 	}
 	else// padre que genera un hijo
 	{
-		close(fd1[READ_END]);//cerramos el extremo no necesario
+		close(fd1[WRITE_END]);//cerramos el extremo no necesario
 		
 		/* fork
 			nos crea el primer hijo
@@ -129,22 +126,24 @@ int main()
 		if (pid == 0)
 		{
 			fd2 = open(FILE_NAME, O_WRONLY);//abrimos el archivo .txt
-			if (fd2 < 0)//ctr de errores
-			{
-				write(1, "asd\n", 4);
-				return(0);
-			}
+			// if (fd2 < 0)//ctr de errores
+			// {
+			// 	write(1, "asd\n", 4);
+			// 	return(0);
+			// }
 			dup2(fd1[READ_END], STDIN_FILENO);//redireccionamos el estandar de lectura al fd1[Read]
 			close(fd1[READ_END]);//lo cerramos pq no se utilizara mas
 
 			dup2(fd2, STDOUT_FILENO);//redirecccionamos la respuesta del comando al archivo .txt
 			execlp("/usr/bin/wc", "wc", NULL);//mismo funcionamientoo q el execlp de arriba
+			ft_printf("Accede???\n");
 		}
 		else //SUPER-PADRE
 		{
 			close(fd1[READ_END]);//cerramos el extremo de lectura
 		}
 	}
+	/*  Para esperar a los hijos */
 	wait(&status);
 	wait(&status);
 	return(0);
