@@ -3,6 +3,8 @@
 
 # Object files
 *.o
+*/*.o
+*/*/*.o
 *.ko
 *.obj
 *.elf
