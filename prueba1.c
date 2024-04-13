@@ -6,7 +6,7 @@
 /*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 20:50:47 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/12 18:24:44 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:57:09 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 // 	{
 // 		close(fd[1]); //cerramos el fd de escritura
 // 		num = read(fd[0], bf, sizeof(bf));
-// 		ft_printf("Numero de bytes leidos por el padre '%d'\n", num);
+// 		printf("Numero de bytes leidos por el padre '%d'\n", num);
 // 		close(fd[0]); //cerramos el fd de leer
 // 		return (0);
 // 	}
@@ -214,20 +214,20 @@ int main()
             close(fd1[READ_END]);
             close(fd2[WRITE_END]);
             
-            // pid = fork();
-            // if (pid == 0)// hijo 3
-            // {
+            pid = fork();
+            if (pid == 0)// hijo 3
+            {
             //     dup2(fd2[READ_END], STDIN_FILENO);
             //     close(fd2[READ_END]);
             //     execlp("/usr/bin/wc", "wc", "-l", NULL);
 
-            //     // fd3 = open(FILE_NAME, O_WRONLY );
-            //     // dup2(fd2[READ_END], STDIN_FILENO);
-            //     // close(fd2[READ_END]);
-            //     // dup2(fd3, STDOUT_FILENO);
-            //     // execlp("/usr/bin/wc", "wc", "-l", NULL);
+                fd3 = open(FILE_NAME, O_WRONLY);
+                dup2(fd2[READ_END], STDIN_FILENO);
+                close(fd2[READ_END]);
+                dup2(fd3, STDOUT_FILENO);
+                execlp("/usr/bin/wc", "wc", "-l", NULL);
 
-            // }
+            }
         }
     }
     close(fd2[READ_END]);//cerramos el ultimo que quedaba

@@ -20,7 +20,7 @@ UTILS_OBJS	=	$(addprefix $(UTILS_SRC), *.o)
 UTILS     	=	$(addprefix $(UTILS_SRC), $(UTILS_A))
 
 SRCS	=	pipex.c \
-			pipex_utils.c \
+			# pipex_utils.c \
 
 OBJS	=	${SRCS:.c=.o}
 
