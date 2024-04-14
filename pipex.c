@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:20:46 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/13 19:32:59 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/04/14 17:43:31 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "./pipex.h"
 
-int main(int argc, char *argv)
+int main(int argc, char **argv)
 {
-    
+    paramvalidator(argc, argv);
+	
+	return (0);
 }

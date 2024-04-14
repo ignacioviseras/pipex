@@ -12,7 +12,7 @@
 
 NAME	=	pipex
 # CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -O3
-CFLAGS	=	-Wall -Wextra -g3 -fsanitize=address -O3
+CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -O3
 
 UTILS_A		=	utils.a
 UTILS_SRC 	=	./utils/
@@ -20,6 +20,7 @@ UTILS_OBJS	=	$(addprefix $(UTILS_SRC), *.o)
 UTILS     	=	$(addprefix $(UTILS_SRC), $(UTILS_A))
 
 SRCS	=	pipex.c \
+			validator.c \
 			# pipex_utils.c \
 
 OBJS	=	${SRCS:.c=.o}

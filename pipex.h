@@ -29,6 +29,7 @@
 #include <stdlib.h>
 #include "./utils/utils.h"
 
-
+int		paramvalidator(int argc, char **argv);
+int		argumentvalidator(char *str);
 
 #endif
