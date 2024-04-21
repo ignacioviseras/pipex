@@ -19,15 +19,19 @@ BASICS   	  	=	$(addprefix $(PATH_BASICS), $(BASICS_SRC))
 PRINTF	     	=	$(addprefix $(PATH_PRINTF), $(PRINTF_SRC))
 
 #carpeta utils
-# SRCS			=	asdasd.c \
+# SRCS			=	asdasdasd.c \
 
 # #carpeta basics
 BASICS_SRC		=	ft_strlen.c \
+					ft_strchr.c \
+					ft_strlcpy.c \
+					ft_substr.c \
+					ft_strdup.c \
 
 #carpeta print
 PRINTF_SRC		=	ft_printf.c \
 					ft_printNumbers.c \
-					ft_printText.c
+					ft_printText.c \
 
 
 OBJS			=	${PRINTF:.c=.o} \

@@ -25,11 +25,15 @@
 # define FILE_NAME "result.txt" /* NOMBRE DEL ARCHIVO DND SE GUARDA LA INFO */
 #endif
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
+
 #include <unistd.h>
 #include <stdlib.h>
 #include "./utils/utils.h"
 
 int		paramvalidator(int argc, char **argv);
-int		argumentvalidator(char *str);
+int filesvalidator(char *file1, char *file2);
 
 #endif
