@@ -35,6 +35,13 @@ char	*ft_strchr(const char *s, int c);
 size_t	ft_strlcpy(char *dst, char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+char	**ft_split(char const *s, char c);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_bzero(void *s, size_t n);
+void	*ft_memset(void *s, int c, size_t n);
+char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
 
 //pertenece a printf
 int		ft_printf(char const *format, ...);
