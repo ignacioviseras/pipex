@@ -35,5 +35,7 @@
 
 int		paramvalidator(int argc, char **argv);
 int filesvalidator(char *file1, char *file2);
+int access_validate(char *env, char *comand);
+
 
 #endif
