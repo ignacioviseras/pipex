@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:22:24 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/21 17:22:52 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:58:25 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,6 @@ static int	n_words(char const *s, char c)
 	if (s[index - 1] && s[index - 1] != c)
 		words++;
 	return (words);
-}
-
-static void	**free_all(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	return (free(str), NULL);
 }
 
 char	**ft_split(char const *s, char c)

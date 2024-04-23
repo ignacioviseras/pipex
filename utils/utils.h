@@ -55,6 +55,6 @@ int		ft_print_pointer(unsigned long long n);
 
 
 //pertenece a utils
-char	*get_next_line(int fd);
+void	**free_all(char **str);
 
 #endif

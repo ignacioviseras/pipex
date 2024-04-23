@@ -33,9 +33,8 @@
 #include <stdlib.h>
 #include "./utils/utils.h"
 
-int		paramvalidator(int argc, char **argv);
-int filesvalidator(char *file1, char *file2);
-int access_validate(char *env, char *comand);
-
+int pipe_action(char *file1, char *file2, char *comand1, char *comand2);
+int access_validate(char **path, char *comand);
+int	load_param(char **path, char *comand);
 
 #endif
