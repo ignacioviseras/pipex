@@ -6,13 +6,13 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 11:47:55 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/23 21:22:51 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:36:45 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "./pipex.h"
 
-int access_validate(char **path, char *comand)
+char *access_validate(char **path, char *comand)
 {
     char *dir1;
     int fd_dir1;
@@ -27,8 +27,8 @@ int access_validate(char **path, char *comand)
 		if (fd_dir1 == 0)
 		{
 			printf("Tienes acceso\n");
-			free(dir1);
-			break;
+			//free(dir1);
+			return (dir1);
 		}
 		free(dir1);
 		x++;
@@ -37,26 +37,73 @@ int access_validate(char **path, char *comand)
 	if (fd_dir1 == -1)
 	{
 		printf("No hay accesso a ninugn directorio\n");
-		return (-1);
+		return (NULL);
 	}
-	return(0);
+	return (NULL);
 }
 
-int	load_param(char **path, char *comand)
+char	*load_param(char **path, char *comand)
 {
 	char **comand_splited;
-	int	access;
+	char	*result;
 
 	if (ft_strchr(comand, ' '))
 	{
 		comand_splited = ft_split(comand, ' ');
-		access = access_validate(path, comand_splited[0]);
+		result = access_validate(path, comand_splited[0]);
 		free_all(comand_splited);
 	}
 	else
-		access = access_validate(path, comand);
-	return (access);
+		result = access_validate(path, comand);
+	return (result);
 }
+
+// int access_validate(char **path, char *comand)
+// {
+//     char *dir1;
+//     int fd_dir1;
+//     int x;
+
+// 	x = 0;
+// 	fd_dir1 = -1;
+// 	while (path[x] || fd_dir1 == 0)
+// 	{
+// 		dir1 = ft_strjoin(path[x], comand);
+// 		fd_dir1 = access(dir1, X_OK);
+// 		if (fd_dir1 == 0)
+// 		{
+// 			printf("Tienes acceso\n");
+// 			free(dir1);
+// 			break;
+// 		}
+// 		free(dir1);
+// 		x++;
+// 	}
+// 	printf("estado de acceso '%d'\n", fd_dir1);
+// 	if (fd_dir1 == -1)
+// 	{
+// 		printf("No hay accesso a ninugn directorio\n");
+// 		return (-1);
+// 	}
+// 	return(0);
+// }
+
+
+// int	load_param(char **path, char *comand)
+// {
+// 	char **comand_splited;
+// 	int	access;
+
+// 	if (ft_strchr(comand, ' '))
+// 	{
+// 		comand_splited = ft_split(comand, ' ');
+// 		access = access_validate(path, comand_splited[0]);
+// 		free_all(comand_splited);
+// 	}
+// 	else
+// 		access = access_validate(path, comand);
+// 	return (access);
+// }
 
 //---------------------------
 	// fd_file1 = open(argv[1], O_RDONLY);

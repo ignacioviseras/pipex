@@ -34,7 +34,15 @@
 #include "./utils/utils.h"
 
 int pipe_action(char *file1, char *file2, char *comand1, char *comand2);
-int access_validate(char **path, char *comand);
-int	load_param(char **path, char *comand);
+char *access_validate(char **path, char *comand);
+char	*load_param(char **path, char *comand);
+int pipe_action(char *file1, char *file2, char *comand1, char *comand2);
+int	red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char **comand);
+int	cigarette_pipe(int *fd_pipe, int fd_file2, char *path, char **comand);
+// int	initpipe(char *path1, char *path2, char **comand1, char **comand2);
+int	initpipe(char *path1, char *path2, char **initials);
+int	tramited(char *path, char **arguments);
+
+
 
 #endif
