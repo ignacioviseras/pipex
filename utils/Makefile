@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME			=	utils.a
-CFLAGS			=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address
 
 PATH_BASICS 	=	./basics/
 PATH_PRINTF 	=	./printf/
@@ -20,6 +20,8 @@ PRINTF	     	=	$(addprefix $(PATH_PRINTF), $(PRINTF_SRC))
 
 #carpeta utils
 SRCS			=	free_all.c \
+					free_all_triple.c \
+					split_formated.c \
 
 # #carpeta basics
 BASICS_SRC		=	ft_strlen.c \

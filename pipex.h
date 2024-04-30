@@ -31,7 +31,20 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include "./utils/utils.h"
+
+
+typedef struct s_params
+{
+	char	*file1;
+	char	*file2;
+	char	*comand_path1;
+	char	*comand_path2;
+	char	**comand1;
+	char	**comand2;
+
+}			t_params;
 
 int pipe_action(char *file1, char *file2, char *comand1, char *comand2);
 char *access_validate(char **path, char *comand);
@@ -39,8 +52,7 @@ char	*load_param(char **path, char *comand);
 int pipe_action(char *file1, char *file2, char *comand1, char *comand2);
 int	red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char **comand);
 int	cigarette_pipe(int *fd_pipe, int fd_file2, char *path, char **comand);
-// int	initpipe(char *path1, char *path2, char **comand1, char **comand2);
-int	initpipe(char *path1, char *path2, char **initials);
+int	initpipe(t_params *p);
 int	tramited(char *path, char **arguments);
 
 

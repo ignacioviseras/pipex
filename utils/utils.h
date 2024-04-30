@@ -56,5 +56,7 @@ int		ft_print_pointer(unsigned long long n);
 
 //pertenece a utils
 void	**free_all(char **str);
+void	free_all_triple(char ***str);
+char	**split_formated(char const *s, char c);
 
 #endif

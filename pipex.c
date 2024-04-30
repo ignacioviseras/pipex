@@ -6,7 +6,7 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:20:46 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/25 23:08:18 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/04/30 19:52:53 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char **comand)
 	dup2(fd_pipe[WRITE_END], STDOUT_FILENO);
 	close(fd_pipe[WRITE_END]);//cerramos el extremo ESCRITURA
 
+	// char *asd[] = {"ls", NULL};
 	execve(path, comand, NULL);
 	perror("execve");
 
@@ -112,22 +113,24 @@ int	cigarette_pipe(int *fd_pipe, int fd_file2, char *path, char **comand)
 {
 	close(fd_pipe[WRITE_END]);//cerramos el extremo no necesario
 	dup2(fd_pipe[READ_END], STDIN_FILENO);//redireccionamos el estandar de lectura al fd1[Read]
-	
 	close(fd_pipe[READ_END]);
 	dup2(fd_file2, STDOUT_FILENO);
- 
+
+	// char *asd[] = {"grep" ,"Makefile", NULL};
 	execve(path, comand, NULL);
 	perror("execve");
 	
 	return (0);
 }
 
-// int	initpipe(char *path1, char *path2, char **comand1, char **comand2)
-int	initpipe(char *path1, char *path2, char **initials)
+int	initpipe(t_params *p)
 {
 	int fd_files[2];
 	int fd_pipe[2];
 	int pid;
+	int	status;
+	int resultpipe;
+
 	/*
 		O_CREAT: Indica que se debe crear el archivo si no existe.
 		O_WRONLY: Indica que el archivo se abrirá solo para escritura.
@@ -136,60 +139,52 @@ int	initpipe(char *path1, char *path2, char **initials)
 			permiso de lectura y escritura, mientras que el grupo y otros solo tienen permiso de lectura.
 			Los permisos se especifican en octal.
 	*/
-	printf("arch1 %s\n", path1);
-	printf("arch1 %s\n", path2);
 
-	fd_files[0] = open(path1, O_CREAT | O_RDONLY | O_TRUNC, 0777);
-	fd_files[1] = open(path2, O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	printf("arch1 %d\n", fd_files[0]);
-	printf("arch2 %d\n", fd_files[1]);
+	fd_files[0] = open(p->file1, O_CREAT | O_RDONLY | O_TRUNC, 0777);
+	fd_files[1] = open(p->file1, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	printf("fd arch1 %d\n", fd_files[0]);
+	printf("fd arch2 %d\n", fd_files[1]);
 	if (fd_files[0] < 0 || fd_files[1] < 0)
 	{
 		printf("\t--- Error ---\nAl abrir el archivo\n");
         exit(1);
 	}
+	resultpipe = pipe(fd_pipe);
+	if (resultpipe == -1) 
+	{
+		perror("pipe");
+		exit(1);
+	}
 	pid = fork();
 	if (pid == 0)// hijo
-		red_flag_pipe(fd_pipe, fd_files[0], path1, initials[1][0]);
+		red_flag_pipe(fd_pipe, fd_files[0], p->comand_path1, p->comand1);
 	else //padre
-		cigarette_pipe(fd_pipe, fd_files[1], path2, initials[1][1]);
-	free_all(initials[1][0]);
-	free_all(initials[1][1]);
-	
+		cigarette_pipe(fd_pipe, fd_files[1], p->comand_path2, p->comand2);
+	wait(&status);
 	return (0);
 }
 
 int	tramited(char *path, char **arguments)
 {
 	char **dir;
-	// char *path1;
-	// char *path2;
-	// char **comand1;
-	// char **comand2;
-	char **initials;
+	t_params		p;
 
 	dir = ft_split(path + 5, ':');
-	initials[0][0] =load_param(dir, arguments[2]);
-	initials[0][1] =load_param(dir, arguments[3]);
-	// path1 = load_param(dir, arguments[2]);
-	// path2 = load_param(dir, arguments[3]);
+	p.file1 = arguments[1];
+	p.file2 = arguments[4];
+	p.comand_path1 =load_param(dir, arguments[2]);
+	p.comand_path2 =load_param(dir, arguments[3]);
+	p.comand1 = split_formated(arguments[2], ' ');
+	p.comand2 = split_formated(arguments[3], ' ');
 	free_all(dir);
-	// comand1 = ft_split(arguments[2], ' ');
-	// comand2 = ft_split(arguments[3], ' ');
-	initials[1][0] = ft_split(arguments[2], ' ');
-	initials[1][1] = ft_split(arguments[3], ' ');
-	if ((initials[0][0] != NULL) && (initials[0][1] != NULL))
-	// if ((path1 != NULL) && (path2 != NULL))
+	if ((p.comand_path1 != NULL) && (p.comand_path2 != NULL))
 	{
-		initpipe(arguments[1], arguments[4], initials);
-		// initpipe(path1, path2, comand1, comand2);
-		free(initials[0][0]);
-		free(initials[0][1]);
+		initpipe(&p);
+		free_all(p.comand1);
+		free_all(p.comand2);
 	}
 	else
-	{
 		exit(1);
-	}
 	return (0);
 }
 
