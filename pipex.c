@@ -6,7 +6,7 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:20:46 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/30 23:00:47 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:46:01 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 // 	char buffer[BUFFER_SIZE+1];
 // 	int fd_pipe[2];
 // 	int pid;
-
 // 	printf("cmd1 %s\n", comand1);
 // 	printf("cmd2 %s\n", comand2);
 // 	if (pipe(fd_pipe) == -1)
@@ -72,13 +71,10 @@
 // 		close(fd_pipe[READ_END]);
 // 		dup2(fd_file2, STDOUT_FILENO);
 // 		//--
-
 //         //-------- prueba de split pal comando
 // 	    char **comand_splited;
 // 		comand_splited = ft_split(comand2, ' ');
-
 //         //-----------------
-
 // 		char *asd[] = {comand_splited[0], comand_splited[1], NULL};
 // 		dup2(fd_file2, STDOUT_FILENO);
 // 		execve("/usr/bin/grep", asd, NULL);
@@ -89,41 +85,7 @@
 // 	return (0);
 // }
 
-/*
-	el hijo q juega lol flaco y ve anime
-*/
-// int	red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char *comand)
-int	red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char **comand)
-{
-	close(fd_pipe[READ_END]);
-	dup2(fd_file1, STDIN_FILENO);
-	printf("comando 1 %s", comand[0]);
-	dup2(fd_pipe[WRITE_END], STDOUT_FILENO);
-	close(fd_pipe[WRITE_END]);//cerramos el extremo ESCRITURA
 
-	execve(path, comand, NULL);
-	perror("execve");
-
-	return (0);
-}
-/*
-	el primer desarrollo de personaje
-*/
-// int	cigarette_pipe(int *fd_pipe, int fd_file2, char *path, char *comand)
-int	cigarette_pipe(int *fd_pipe, int fd_file2, char *path, char **comand)
-{
-	close(fd_pipe[WRITE_END]);//cerramos el extremo no necesario
-	dup2(fd_pipe[READ_END], STDIN_FILENO);//redireccionamos el estandar de lectura al fd1[Read]
-	printf("comando 2 %s", comand[0]);
-
-	close(fd_pipe[READ_END]);
-	dup2(fd_file2, STDOUT_FILENO);
-
-	execve(path, comand, NULL);
-	perror("execve");
-	
-	return (0);
-}
 
 int	initpipe(t_params *p)
 {
@@ -133,19 +95,8 @@ int	initpipe(t_params *p)
 	int	status;
 	int resultpipe;
 
-	/*
-		O_CREAT: Indica que se debe crear el archivo si no existe.
-		O_WRONLY: Indica que el archivo se abrirá solo para escritura.
-		O_TRUNC: Indica que si el archivo ya existe, se trunca (es decir, se borra su contenido).
-		0644 son los permisos del archivo. Estos permisos especifican que el propietario tiene 
-			permiso de lectura y escritura, mientras que el grupo y otros solo tienen permiso de lectura.
-			Los permisos se especifican en octal.
-	*/
-
 	fd_files[0] = open(p->file1, O_CREAT | O_RDONLY | O_TRUNC, 0777);
 	fd_files[1] = open(p->file2, O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	printf("fd arch1 %d\n", fd_files[0]);
-	printf("fd arch2 %d\n", fd_files[1]);
 	if (fd_files[0] < 0 || fd_files[1] < 0)
 	{
 		printf("\t--- Error ---\nAl abrir el archivo\n");
@@ -158,7 +109,6 @@ int	initpipe(t_params *p)
 		exit(1);
 	}
 	pid = fork();
-	// sleep(5000);
 	if (pid == 0)// hijo
 		red_flag_pipe(fd_pipe, fd_files[0], p->comand_path1, p->comand1);
 	else //padre
@@ -177,8 +127,6 @@ int	tramited(char *path, char **arguments)
 	p.file2 = arguments[4];
 	p.comand_path1 =load_param(dir, arguments[2]);
 	p.comand_path2 =load_param(dir, arguments[3]);
-	// p.comand1 = arguments[2];
-	// p.comand2 = arguments[3];
 	p.comand1 = split_formated(arguments[2], ' ');
 	p.comand2 = split_formated(arguments[3], ' ');
 	free_all(dir);
@@ -215,9 +163,6 @@ int main(int argc, char **argv, char **env)
 }
 
 
-
-
-
 // int pipe_action(char *file1, char *file2, char *comand1, char *comand2)
 // {
 // 	//./pipex infile "ls -l" "wc -l" outfile
@@ -227,7 +172,6 @@ int main(int argc, char **argv, char **env)
 // 	char buffer[BUFFER_SIZE+1];
 // 	int fd_pipe[2];
 // 	int pid;
-
 // 	printf("cmd1 %s\n", comand1);
 // 	printf("cmd2 %s\n", comand2);
 // 	if (pipe(fd_pipe) == -1)
@@ -272,13 +216,10 @@ int main(int argc, char **argv, char **env)
 // 		close(fd_pipe[READ_END]);
 // 		dup2(fd_file2, STDOUT_FILENO);
 // 		//--
-
 //         //-------- prueba de split pal comando
 // 	    char **comand_splited;
 // 		comand_splited = ft_split(comand2, ' ');
-
 //         //-----------------
-
 // 		char *asd[] = {comand_splited[0], comand_splited[1], NULL};
 // 		dup2(fd_file2, STDOUT_FILENO);
 // 		execve("/usr/bin/grep", asd, NULL);
@@ -292,36 +233,10 @@ int main(int argc, char **argv, char **env)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // int main(int argc, char **argv, char **env)
 // {
 //     char **path;
 //     int x;
-
 //     x = 0;
 //     if (argc != 5)
 // 	{
