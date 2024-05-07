@@ -23,7 +23,6 @@ int	red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char **comand)
 	printf("comando 1 %s", comand[0]);
 	dup2(fd_pipe[WRITE_END], STDOUT_FILENO);
 	close(fd_pipe[WRITE_END]);//cerramos el extremo ESCRITURA
-
 	execve(path, comand, NULL);
 	perror("execve");
 

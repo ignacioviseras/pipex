@@ -13,7 +13,9 @@
 NAME	=	pipex
 # CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -O3
 # CFLAGS	=	-Wall -Wextra -Werror -g -O3
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -O3
+# CFLAGS	=	-Wall -Wextra -g -fsanitize=address -O3
+# CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address -O3
+CFLAGS	=	-Wall -Wextra -Werror -g -O3
 
 UTILS_A		=	utils.a
 UTILS_SRC 	=	./utils/

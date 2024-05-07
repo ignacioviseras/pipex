@@ -6,11 +6,28 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 11:47:55 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/25 17:36:45 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:06:11 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "./pipex.h"
+
+char	*access_absolute(char *path)
+{
+    int fd_dir1;
+	char *comand_ok;
+
+	fd_dir1 = access(path, X_OK);
+	if (fd_dir1 == -1)
+	{
+		printf("No hay accesso\n");
+		return (NULL);
+	}
+	comand_ok = ft_strdup(path);
+	
+	printf("comand ok '%p'", comand_ok);
+	return (comand_ok);
+}
 
 char *access_validate(char **path, char *comand)
 {
@@ -47,7 +64,18 @@ char	*load_param(char **path, char *comand)
 	char **comand_splited;
 	char	*result;
 
-	if (ft_strchr(comand, ' '))
+	if (ft_strchr(comand, '/'))
+	{
+		if (ft_strchr(comand, ' '))
+		{
+			comand_splited = ft_split(comand, ' ');
+			result = access_absolute(comand_splited[0]);
+			free_all(comand_splited);
+		}
+		else
+			result = access_absolute(comand);
+	}
+	else if (ft_strchr(comand, ' '))
 	{
 		comand_splited = ft_split(comand, ' ');
 		result = access_validate(path, comand_splited[0]);

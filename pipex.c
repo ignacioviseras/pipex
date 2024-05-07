@@ -6,7 +6,7 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:20:46 by igvisera          #+#    #+#             */
-/*   Updated: 2024/05/02 15:46:01 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:09:17 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,10 @@ int	initpipe(t_params *p)
 	else //padre
 		cigarette_pipe(fd_pipe, fd_files[1], p->comand_path2, p->comand2);
 	wait(&status);
+	free(p->comand_path1);
+	free(p->comand_path2);
+	free_all(p->comand1);
+	free_all(p->comand2);
 	return (0);
 }
 
@@ -127,38 +131,50 @@ int	tramited(char *path, char **arguments)
 	p.file2 = arguments[4];
 	p.comand_path1 =load_param(dir, arguments[2]);
 	p.comand_path2 =load_param(dir, arguments[3]);
+	printf("ruta trarada '%s'\n", p.comand_path1);
 	p.comand1 = split_formated(arguments[2], ' ');
 	p.comand2 = split_formated(arguments[3], ' ');
 	free_all(dir);
 	if ((p.comand_path1 != NULL) && (p.comand_path2 != NULL))
 	{
+		printf("mem de la struc '%p'", p.comand_path1);
 		initpipe(&p);
-		// free_all(p.comand1);
-		// free_all(p.comand2);
 	}
 	else
+	{
+		free(p.comand_path1);
+		free(p.comand_path2);
+		free_all(p.comand1);
+		free_all(p.comand2);
 		exit(1);
+	}
 	return (0);
+}
+
+void	have_env(char **env, char **argv)
+{
+	int x;
+
+    x = 0;
+	while (env[x])
+	{
+		if (ft_strncmp("PATH=", env[x], 5) == 0)
+			tramited(env[x] + 5, argv);
+		x++;
+	}
 }
 
 int main(int argc, char **argv, char **env)
 {
-    int x;
-
-    x = 0;
     if (argc != 5)
 	{
 		printf("\t--- Error ---\nNecesitas 5 parametros\n");
 		return (-1);
 	}
-    while (env[x])
-    {
-        if (ft_strncmp("PATH=", env[x], 5) == 0)
-        {
-            tramited(env[x] + 5, argv);
-        }
-        x++;
-    }
+	else if (env || env[0])
+		have_env(env, argv);
+	else
+		printf("\t--- Error ---\nneed path\n");
 	return (0);
 }
 

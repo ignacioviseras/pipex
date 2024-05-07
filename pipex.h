@@ -43,8 +43,6 @@ typedef struct s_params
 	char	*comand_path2;
 	char	**comand1;
 	char	**comand2;
-	// char	*comand1;
-	// char	*comand2;
 
 }			t_params;
 
