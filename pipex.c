@@ -6,7 +6,7 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:20:46 by igvisera          #+#    #+#             */
-/*   Updated: 2024/05/07 19:09:17 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:40:32 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,10 +171,12 @@ int main(int argc, char **argv, char **env)
 		printf("\t--- Error ---\nNecesitas 5 parametros\n");
 		return (-1);
 	}
-	else if (env || env[0])
+	else if (env && env[0])
 		have_env(env, argv);
+	else if (ft_strchr(argv[2], '/') && ft_strchr(argv[3], '/'))
+		tramited("", argv);
 	else
-		printf("\t--- Error ---\nneed path\n");
+		printf("\t--- Error ---\nneed path or absolute route\n");
 	return (0);
 }
 
