@@ -6,11 +6,11 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 19:49:15 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/29 19:50:12 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:45:55 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./utils.h"
+#include "./utils.h"
 
 static int	n_words(char const *s, char c)
 {
@@ -55,7 +55,7 @@ char	**split_formated(char const *s, char c)
 		while (*s && *s == c)
 			s++;
 		if (!*s)
-			break;
+			break ;
 		if (!ft_strchr(s, c))
 			len_word = ft_strlen(s);
 		else
@@ -65,7 +65,6 @@ char	**split_formated(char const *s, char c)
 			return (free_all(str), NULL);
 		s += len_word;
 	}
-	str[i] = NULL; // Añadir NULL al final de la matriz
+	str[i] = NULL;
 	return (str);
 }
-

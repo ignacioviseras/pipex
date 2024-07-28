@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 18:56:38 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/21 19:25:35 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:39:56 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../utils.h"
+#include "../utils.h"
 
 static size_t	ft_newstrlcpy(char *dst, char *src, size_t size)
 {
@@ -27,8 +27,8 @@ static size_t	ft_newstrlcpy(char *dst, char *src, size_t size)
 		index++;
 	}
 	dst[index] = '/';
-	dst[index+1] = '\0';
-	return (src_lenght+1);
+	dst[index + 1] = '\0';
+	return (src_lenght + 1);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

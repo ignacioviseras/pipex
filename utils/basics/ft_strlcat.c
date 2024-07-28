@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:11:22 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/21 19:11:47 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:40:20 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../utils.h"
+#include "../utils.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {

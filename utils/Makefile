@@ -21,7 +21,6 @@ PRINTF	     	=	$(addprefix $(PATH_PRINTF), $(PRINTF_SRC))
 
 #carpeta utils
 SRCS			=	free_all.c \
-					free_all_triple.c \
 					split_formated.c \
 
 # #carpeta basics

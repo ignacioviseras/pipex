@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   free_param.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 20:33:01 by igvisera          #+#    #+#             */
-/*   Updated: 2024/07/28 16:43:21 by igvisera         ###   ########.fr       */
+/*   Created: 2024/07/28 18:54:57 by igvisera          #+#    #+#             */
+/*   Updated: 2024/07/28 19:02:49 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils.h"
+#include "./pipex.h"
 
-char	*ft_strchr(const char *s, int c)
+void free_param(t_params *p)
 {
-	size_t	index;
-
-	index = 0;
-	while (s && s[index] != '\0')
-	{
-		if (s[index] == (unsigned char)c)
-			return ((char *)s + index);
-		index++;
-	}
-	if ((unsigned char)c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	return (NULL);
+    free(p->comand_path1);
+    free(p->comand_path2);
+    free_all(p->comand1);
+    free_all(p->comand2);
 }

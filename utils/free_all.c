@@ -6,11 +6,11 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:57:51 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/23 17:58:34 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:44:41 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "./utils.h"
+#include "./utils.h"
 
 void	**free_all(char **str)
 {

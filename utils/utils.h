@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "../pipex.h"
 
 # ifndef HEXLOWER
 #  define HEXLOWER "0123456789abcdef"
@@ -35,7 +36,7 @@ char	*ft_strchr(const char *s, int c);
 size_t	ft_strlcpy(char *dst, char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, size_t n);
@@ -53,10 +54,8 @@ int		ft_print_int(int n);
 int		ft_print_hex(unsigned long long n, char *baseFormat);
 int		ft_print_pointer(unsigned long long n);
 
-
 //pertenece a utils
 void	**free_all(char **str);
-void	free_all_triple(char ***str);
 char	**split_formated(char const *s, char c);
 
 #endif

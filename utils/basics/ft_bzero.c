@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:36:45 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/21 17:37:30 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:42:13 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../utils.h"
+#include "../utils.h"
 
 void	ft_bzero(void *s, size_t n)
 {

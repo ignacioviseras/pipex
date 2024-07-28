@@ -25,6 +25,8 @@ UTILS     	=	$(addprefix $(UTILS_SRC), $(UTILS_A))
 SRCS	=	pipex.c \
 			validator.c \
 			pipex_utils.c \
+			free_param.c
+
 
 OBJS	=	${SRCS:.c=.o}
 

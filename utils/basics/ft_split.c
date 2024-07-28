@@ -6,11 +6,11 @@
 /*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 17:22:24 by igvisera          #+#    #+#             */
-/*   Updated: 2024/04/23 17:58:25 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/07/28 16:43:05 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../utils.h"
+#include "../utils.h"
 
 static int	n_words(char const *s, char c)
 {
