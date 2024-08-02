@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:20:46 by igvisera          #+#    #+#             */
-/*   Updated: 2024/07/28 19:05:20 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/08/02 19:15:34 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 int	initpipe(t_params *p)
 {
-	int	fd_files[2];
+	// int	fd_files[2];
 	int	fd_pipe[2];
 	int	pid;
 	int	status;
 	int	resultpipe;
 
-	fd_files[0] = open(p->file1, O_CREAT | O_RDONLY | O_TRUNC, 0777);
-	fd_files[1] = open(p->file2, O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	if (fd_files[0] < 0 || fd_files[1] < 0)
-	{
-		ft_printf("\t--- Error ---\nWhen opening the file\n");
-		exit(1);
-	}
 	resultpipe = pipe(fd_pipe);
 	if (resultpipe == -1)
 	{
@@ -35,9 +28,9 @@ int	initpipe(t_params *p)
 	}
 	pid = fork();
 	if (pid == 0)
-		red_flag_pipe(fd_pipe, fd_files[0], p->comand_path1, p->comand1);
+		child_pipe(fd_pipe, p->file1, p->comand_path1, p->comand1);
 	else
-		cigarette_pipe(fd_pipe, fd_files[1], p->comand_path2, p->comand2);
+		father_pipe(fd_pipe, p->file2, p->comand_path2, p->comand2);
 	wait(&status);
 	free_param(p);
 	return (0);

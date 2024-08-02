@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igvisera <igvisera@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 11:47:55 by igvisera          #+#    #+#             */
-/*   Updated: 2024/07/28 16:50:27 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/08/02 18:49:02 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,13 @@ char	*load_param(char **path, char *comand)
 	else
 		result = access_validate(path, comand);
 	return (result);
+}
+
+void	control_file(int fd)
+{
+	if (fd < 0)
+	{
+		ft_printf("\t--- Error ---\nWhen opening the file\n");
+		exit(1);
+	}
 }

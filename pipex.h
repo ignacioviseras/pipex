@@ -45,10 +45,13 @@ int		pipe_action(char *file1, char *file2, char *comand1, char *comand2);
 char	*access_validate(char **path, char *comand);
 char	*load_param(char **path, char *comand);
 int		pipe_action(char *file1, char *file2, char *comand1, char *comand2);
-int		red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char **comand);
-int		cigarette_pipe(int *fd_pipe, int fd_file2, char *path, char **comand);
+// int		child_pipe(int *fd_pipe, int fd_file1, char *path, char **comand);
+// int		father_pipe(int *fd_pipe, int fd_file2, char *path, char **comand);
+int		child_pipe(int *fd_pipe, char *file1, char *path, char **comand);
+int		father_pipe(int *fd_pipe, char *file2, char *path, char **comand);
 int		initpipe(t_params *p);
 int		tramited(char *path, char **arguments);
 void	free_param(t_params *p);
+void	control_files(int fd1, int fd2);
 
 #endif

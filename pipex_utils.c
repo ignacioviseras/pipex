@@ -12,8 +12,17 @@
 
 #include "pipex.h"
 
-int	red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char **comand)
+int	child_pipe(int *fd_pipe, char *file1, char *path, char **comand)
 {
+	int fd_file1;
+
+	fd_file1 = open(file1, O_RDONLY);
+	if (fd_file1 < 0)
+	{
+		perror("open");
+		return (0);
+	}
+	//control_file(fd_file1);
 	close(fd_pipe[READ_END]);
 	dup2(fd_file1, STDIN_FILENO);
 	dup2(fd_pipe[WRITE_END], STDOUT_FILENO);
@@ -23,8 +32,15 @@ int	red_flag_pipe(int *fd_pipe, int fd_file1, char *path, char **comand)
 	return (0);
 }
 
-int	cigarette_pipe(int *fd_pipe, int fd_file2, char *path, char **comand)
+
+int	father_pipe(int *fd_pipe, char *file2, char *path, char **comand)
 {
+	int fd_file2;
+
+	fd_file2 =	open(file2, O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	if (fd_file2 < 0)
+		perror("open");
+	// control_file(fd_file2);
 	close(fd_pipe[WRITE_END]);
 	dup2(fd_pipe[READ_END], STDIN_FILENO);
 	close(fd_pipe[READ_END]);
