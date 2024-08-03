@@ -6,7 +6,7 @@
 /*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:20:46 by igvisera          #+#    #+#             */
-/*   Updated: 2024/08/02 19:15:34 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/08/03 18:58:50 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	initpipe(t_params *p)
 {
-	// int	fd_files[2];
 	int	fd_pipe[2];
 	int	pid;
 	int	status;

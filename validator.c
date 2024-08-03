@@ -6,7 +6,7 @@
 /*   By: igvisera <igvisera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 11:47:55 by igvisera          #+#    #+#             */
-/*   Updated: 2024/08/02 18:49:02 by igvisera         ###   ########.fr       */
+/*   Updated: 2024/08/03 20:35:49 by igvisera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ char	*access_validate(char **path, char *comand)
 	return (NULL);
 }
 
+void validate_comand (char **comand_splited)
+{
+	ft_printf("\t--- Error ---\nComand empty\n");
+	free_all(comand_splited);
+	exit(1);
+}
+
 char	*load_param(char **path, char *comand)
 {
 	char	**comand_splited;
@@ -71,19 +78,12 @@ char	*load_param(char **path, char *comand)
 	else if (ft_strchr(comand, ' '))
 	{
 		comand_splited = ft_split(comand, ' ');
+		if (comand_splited[0] == NULL)
+			validate_comand(comand_splited);
 		result = access_validate(path, comand_splited[0]);
 		free_all(comand_splited);
 	}
 	else
 		result = access_validate(path, comand);
 	return (result);
-}
-
-void	control_file(int fd)
-{
-	if (fd < 0)
-	{
-		ft_printf("\t--- Error ---\nWhen opening the file\n");
-		exit(1);
-	}
 }
